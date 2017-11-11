@@ -1,10 +1,18 @@
 #libbaltcalc
 
 A balanced ternary integer mathematics library for python.
+Part of the SBTCVM Project
 
-v3.0.0
+v3.1.0
 
-(c)2016-2017 Thomas Leathers
+Copyright (c) 2016-2017 Thomas Leathers and Contributors
+
+
+Notice: The usage and API manual, (libbaltcalc_usage_API_manual.odt) is under a different license:
+the GNU Free Documentation License. See said manual for more information.
+A pdf export of libbaltcalc_usage_API_manual.odt, is provided and should be considered
+an Opaque copy. See the Gnu FDL in the manual itself for more information.
+
 
   libbaltcalc is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by

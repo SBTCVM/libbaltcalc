@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-#v3.0.0
+#v3.1.0
 
 def numflip(numtoflip):
 	return(numtoflip[::-1])
@@ -94,7 +94,7 @@ def mcv(tritlen):
 
 
 #inverts the positive and negative numerals in a balanced ternary integer, 
-#(ie 1T0T would become T101 and vice versa)
+#(ie +-0- would become -+0+ and vice versa)
 def BTINVERT(numtoinvert):
 	BTINV1 = numtoinvert.replace("-", "P").replace("+", "-").replace("P", "+")
 	#print BTINV2
@@ -165,14 +165,33 @@ def progbiasnor(polarset, inpA, inpB):
 	elif (inpA!=polarset and inpB!=polarset):
 		return("0")
 
-class btint:
+#trit truncation helper for btint.bttrunk method.
+def trunkhelper(tritlen, decint):
+	#(('0'*tritlen) + DECTOBT(self.intval))[:tritlen]
+	btstr=DECTOBT(decint)
+	if len(btstr)<tritlen:
+		return (('0' * (tritlen - len(btstr))) + btstr)
+	else:
+		return btstr[-tritlen:]
+
+def dectrunkhelper(tritlen, decint):
+	mpival=mpi(tritlen)
+	if decint<-mpival:
+		return -mpival
+	elif decint>mpival:
+		return mpival
+	else:
+		return decint
+
+class btint(object):
+	__slots__ = ('intval')
 	def __init__(self, stringint):
 		#store integer in signed decimal integer.
 		if type(stringint) is int:
 			self.intval=stringint
 		else:
 			try:
-				self.intval=stringint.dec()
+				self.intval=stringint.intval
 			except AttributeError:
 				self.intval=BTTODEC(str(stringint))
 	def __str__(self):
@@ -183,22 +202,40 @@ class btint:
 		return self.intval
 	def bt(self):
 		return DECTOBT(self.intval)
+	def copy(self):
+		return btint(self.intval)
+	def changeval(self, newval):
+		if type(newval) is int:
+			self.intval=newval
+		else:
+			try:
+				self.intval=newval.intval
+			except AttributeError:
+				self.intval=BTTODEC(str(newval))
 	#addition
 	def __add__(self, other):
-		return btint((self.dec() + other.dec()))
+		return btint((self.intval + other.intval))
 	#subtraction
 	def __sub__(self, other):
-		return btint((self.dec() - other.dec()))
+		return btint((self.intval - other.intval))
 	#division
 	def __truediv__(self, other):
-		return btint((self.dec() // other.dec()))
+		return btint((self.intval // other.intval))
 	def __div__(self, other):
-		return btint((self.dec() // other.dec()))
+		return btint((self.intval // other.intval))
 	def __floordiv__(self, other):
-		return btint((self.dec() // other.dec()))
+		return btint((self.intval // other.intval))
 	#multiplication
 	def __mul__(self, other):
-		return btint((self.dec() * other.dec()))
+		return btint((self.intval * other.intval))
+	#compare
+	def __cmp__(self, other):
+		if self.intval<other.intval:
+			return -1
+		elif self.intval>other.intval:
+			return 1
+		else:
+			return 0
 	#others
 	def __abs__(self):
 		return btint(abs(self.intval))
@@ -210,3 +247,9 @@ class btint:
 		return btint(BTINVERT(DECTOBT(self.intval)))
 	def invert(self):
 		return btint(BTINVERT(DECTOBT(self.intval)))
+	#truncation
+	def bttrunk(self, tritlen):
+		return trunkhelper(tritlen, self.intval)
+	def dectrunk(self, tritlen):
+		return btint(dectrunkhelper(tritlen, self.intval))
+		
