@@ -22,8 +22,8 @@ print abs(int3)
 #the int() method is also supported.
 print int(int3)
 print "div"
-print (int1 / int2)
-print ((int1 + int2) / int2)
+print (int1 // int2)
+print ((int1 + int2) // int2)
 
 #you can also pass decimal integers
 print btint(585)

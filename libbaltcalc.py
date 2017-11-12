@@ -219,10 +219,10 @@ class btint(object):
 	def __sub__(self, other):
 		return btint((self.intval - other.intval))
 	#division
-	def __truediv__(self, other):
-		return btint((self.intval // other.intval))
-	def __div__(self, other):
-		return btint((self.intval // other.intval))
+	#def __truediv__(self, other):
+	#	return btint((self.intval // other.intval))
+	#def __div__(self, other):
+	#	return btint((self.intval // other.intval))
 	def __floordiv__(self, other):
 		return btint((self.intval // other.intval))
 	#multiplication
@@ -247,9 +247,9 @@ class btint(object):
 	def __pos__(self):
 		return btint( + self.intval)
 	def __invert__(self):
-		return btint(BTINVERT(DECTOBT(self.intval)))
+		return btint( - self.intval)
 	def invert(self):
-		return btint(BTINVERT(DECTOBT(self.intval)))
+		return btint( - self.intval)
 	#truncation
 	def bttrunk(self, tritlen):
 		return trunkhelper(tritlen, self.intval)
