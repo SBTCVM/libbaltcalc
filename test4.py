@@ -57,3 +57,5 @@ print int5
 print ~int5
 print +int5
 print -int5
+#len returns the length of the integer in trits.
+print len(int5)

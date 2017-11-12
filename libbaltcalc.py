@@ -236,6 +236,9 @@ class btint(object):
 			return 1
 		else:
 			return 0
+	#length (measured in trits)
+	def __len__(self):
+		return len(DECTOBT(self.intval))
 	#others
 	def __abs__(self):
 		return btint(abs(self.intval))
