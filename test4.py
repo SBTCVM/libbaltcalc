@@ -59,3 +59,32 @@ print +int5
 print -int5
 #len returns the length of the integer in trits.
 print len(int5)
+#in place tests
+print "In place tests"
+print "test add"
+int7 = btint(6)
+print int7
+int7 += btint(2)
+print int7
+print "test sub"
+int7 = btint(6)
+print int7
+int7 -= btint(2)
+print int7
+print "test div"
+int7 = btint(6)
+print int7
+int7 //= btint(2)
+print int7
+print "test mul"
+int7 = btint(6)
+print int7
+int7 *= btint(2)
+print int7
+#btint objects support basic mathematics and comparisons with python integers.
+#remember: floating point not yet supported!
+print btint(56) + 5
+print 10 // btint(2)
+
+print 5 == btint(5)
+print btint(6) == 6

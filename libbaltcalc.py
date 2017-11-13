@@ -214,28 +214,110 @@ class btint(object):
 				self.intval=BTTODEC(str(newval))
 	#addition
 	def __add__(self, other):
-		return btint((self.intval + other.intval))
+		if isinstance(other, btint):
+			return btint((self.intval + other.intval))
+		elif isinstance(other, int):
+			return btint((self.intval + other))
+		else:
+			return NotImplemented
+	def __radd__(self, other):
+		if isinstance(other, int):
+			return btint((other + self.intval))
+		else:
+			return NotImplemented
+	def __iadd__(self, other):
+		if isinstance(other, btint):
+			self.intval += other.intval
+			return self
+		elif isinstance(other, int):
+			self.intval += other
+			return self
+		else:
+			return NotImplemented
 	#subtraction
 	def __sub__(self, other):
-		return btint((self.intval - other.intval))
+		if isinstance(other, btint):
+			return btint((self.intval - other.intval))
+		elif isinstance(other, int):
+			return btint((self.intval - other))
+		else:
+			return NotImplemented
+	def __rsub__(self, other):
+		if isinstance(other, int):
+			return btint((other - self.intval))
+		else:
+			return NotImplemented
+	def __isub__(self, other):
+		if isinstance(other, btint):
+			self.intval -= other.intval
+			return self
+		elif isinstance(other, int):
+			self.intval -= other
+			return self
+		else:
+			return NotImplemented
 	#division
-	#def __truediv__(self, other):
-	#	return btint((self.intval // other.intval))
-	#def __div__(self, other):
-	#	return btint((self.intval // other.intval))
 	def __floordiv__(self, other):
-		return btint((self.intval // other.intval))
+		if isinstance(other, btint):
+			return btint((self.intval // other.intval))
+		elif isinstance(other, int):
+			return btint((self.intval // other))
+		else:
+			return NotImplemented
+	def __rfloordiv__(self, other):
+		if isinstance(other, int):
+			return btint((other // self.intval))
+		else:
+			return NotImplemented
+	def __ifloordiv__(self, other):
+		if isinstance(other, btint):
+			self.intval //= other.intval
+			return self
+		elif isinstance(other, int):
+			self.intval //= other
+			return self
+		else:
+			return NotImplemented
 	#multiplication
 	def __mul__(self, other):
-		return btint((self.intval * other.intval))
+		if isinstance(other, btint):
+			return btint((self.intval * other.intval))
+		elif isinstance(other, int):
+			return btint((self.intval * other))
+		else:
+			return NotImplemented
+	def __rmul__(self, other):
+		if isinstance(other, int):
+			return btint((other * self.intval))
+		else:
+			return NotImplemented
+	def __imul__(self, other):
+		if isinstance(other, btint):
+			self.intval *= other.intval
+			return self
+		elif isinstance(other, int):
+			self.intval *= other
+			return self
+		else:
+			return NotImplemented
 	#compare
 	def __cmp__(self, other):
-		if self.intval<other.intval:
-			return -1
-		elif self.intval>other.intval:
-			return 1
+		if isinstance(other, btint):
+			if self.intval<other.intval:
+				return -1
+			elif self.intval>other.intval:
+				return 1
+			else:
+				return 0
+		elif isinstance(other, int):
+			if self.intval<other:
+				return -1
+			elif self.intval>other:
+				return 1
+			else:
+				return 0
 		else:
-			return 0
+			return NotImplemented
 	#length (measured in trits)
 	def __len__(self):
 		return len(DECTOBT(self.intval))
