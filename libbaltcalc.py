@@ -193,7 +193,7 @@ class btint(object):
 			try:
 				self.intval=stringint.intval
 			except AttributeError:
-				self.intval=BTTODEC(str(stringint))
+				self.intval=BTTODEC(str(stringint).replace("p", "+").replace("n", "-"))
 	def __str__(self):
 		return DECTOBT(self.intval)
 	def __int__(self):
@@ -202,6 +202,8 @@ class btint(object):
 		return self.intval
 	def bt(self):
 		return DECTOBT(self.intval)
+	def p0n(self):
+		return (DECTOBT(self.intval).replace("+", "p").replace("-", "n"))
 	def copy(self):
 		return btint(self.intval)
 	def changeval(self, newval):
@@ -211,7 +213,7 @@ class btint(object):
 			try:
 				self.intval=newval.intval
 			except AttributeError:
-				self.intval=BTTODEC(str(newval))
+				self.intval=BTTODEC(str(newval).replace("p", "+").replace("n", "-"))
 	#addition
 	def __add__(self, other):
 		if isinstance(other, btint):

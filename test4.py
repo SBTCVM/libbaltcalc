@@ -88,3 +88,11 @@ print 10 // btint(2)
 
 print 5 == btint(5)
 print btint(6) == 6
+
+#p0n notation tests
+btintn0p=btint("n0p")
+print btintn0p
+print btintn0p.p0n()
+btintn0p.changeval("p0nn")
+print btintn0p
+print btintn0p.p0n()
