@@ -1,6 +1,7 @@
-#libbaltcalc
+# libbaltcalc
 
 A balanced ternary integer mathematics library for python.
+
 Part of the SBTCVM Project
 
 v3.2.0
