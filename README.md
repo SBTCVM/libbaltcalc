@@ -4,9 +4,9 @@ A balanced ternary integer mathematics library for python.
 
 Part of the SBTCVM Project
 
-v3.2.0
+v3.3.0
 
-Copyright (c) 2016-2018 Thomas Leathers and Contributors 
+Copyright (c) 2016-2020 Thomas Leathers and Contributors 
 
 
 Notice: The usage and API manual, (libbaltcalc_usage_API_manual.odt) is under a different license:
