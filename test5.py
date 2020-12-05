@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import libbaltcalc as btcalc
-from libbaltcalc import btint 
+from libbaltcalc import btint
 
 
 
