@@ -10,7 +10,9 @@ def inttob27(intval):
 		chunk, remainder = b27chop(remainder, 1)
 		#print(str(remainder) + " " + str(chunk))
 		output=triad_b27_dict[chunk] + output
-		
+	
+	if output=="":
+		return "0"
 	return output
 def b27toint(base27_string):
 	total=0
