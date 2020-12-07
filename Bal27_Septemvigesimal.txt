@@ -1,4 +1,4 @@
-Balanced Heptavigesimal/Balanced Septemvigesimal (Balanced base 27)
+Balanced Heptavigesimal/Balanced Septemvigesimal (Balanced base 27) / Sept.)
 D +13
 C +12
 B +11
